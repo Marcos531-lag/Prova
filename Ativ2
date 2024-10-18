@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class ImportacaoProdutos {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicitar valor do produto no exterior
+        System.out.print("Informe o valor do produto no exterior: ");
+        double valorProduto = scanner.nextDouble();
+
+        // Verificar se o valor informado é válido
+        if (valorProduto <= 0) {
+            System.out.println("Valor inválido, tente novamente mais tarde.");
+            return; // Encerra o programa
+        }
+
+        // Solicitar tipo de frete
+        System.out.println("Escolha o tipo de frete: ");
+        System.out.println("1 - Frete Demorado (10% do valor do produto)");
+        System.out.println("2 - Frete Médio (15% do valor do produto)");
+        System.out.println("3 - Frete Rápido (20% do valor do produto)");
+        int tipoFrete = scanner.nextInt();
+
+        // Calcular taxa de importação (60% do valor do produto)
+        double taxaImportacao = valorProduto * 0.60;
+
+        // Definir taxa de frete e verificar validade
+        double taxaFrete;
+        String mensagemFrete;
+        switch (tipoFrete) {
+            case 1:
+                taxaFrete = valorProduto * 0.10;
+                mensagemFrete = "Frete demorado escolhido!";
+                break;
+            case 2:
+                taxaFrete = valorProduto * 0.15;
+                mensagemFrete = "Frete médio escolhido!";
+                break;
+            case 3:
+                taxaFrete = valorProduto * 0.20;
+                mensagemFrete = "Frete rápido escolhido!";
+                break;
+            default:
+                System.out.println("Opção de frete inválida, tente novamente mais tarde.");
+                return; // Encerra o programa
+        }
+
+        // Calcular valor final
+        double valorFinal = valorProduto + taxaImportacao + taxaFrete;
+
+        // Exibir resultados
+        System.out.println(mensagemFrete);
+        System.out.printf("Taxa de importação: R$%.2f%n", taxaImportacao);
+        System.out.printf("Valor do frete: R$%.2f%n", taxaFrete);
+        System.out.printf("Valor final da importação: R$%.2f%n", valorFinal);
+    }
+}
